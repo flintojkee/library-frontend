@@ -1,0 +1,119 @@
+@import './variables';
+@import './icons';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: $primaryRg;
+  color: $dark;
+  line-height: 1.38;
+  @media screen and (max-width: $md) {
+    font-size: 15px;
+  }
+}
+.container {
+  padding: 0 23px;
+  max-width: 1304px;
+  margin: 0 auto;
+  min-width: 296px;
+}
+
+.fw {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.btn-link {
+  width: 100%;
+  height: 100%;
+  display: block;
+  line-height: 40px;
+}
+.link {
+  transition: 0.3s ease;
+  padding: 5px;
+  &--medium {
+    color: $medium;
+    &:hover {
+      color: $medium-shade;
+    }
+  }
+  &--primary {
+    color: $primary;
+    &:hover {
+      color: $primary-tint;
+    }
+  }
+}
+
+h1 {
+  margin-bottom: 30px;
+  font-size: 3em;
+}
+
+h2 {
+  margin-bottom: 25px;
+  font-size: 2.25em;
+}
+
+h3 {
+  margin-bottom: 20px;
+  font-size: 1.75em;
+}
+
+.form {
+  &__input-fields {
+    margin-bottom: 30px;
+  }
+  &__field {
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+  &__submit {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.overflow-x--unset {
+  overflow-x: unset !important;
+}
+
+.overflow-y--unset {
+  overflow-y: unset !important;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.dis-mob-block {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .dis-none {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .dis-none-750 {
+    display: none !important;
+  }
+
+  .dis-mob-block {
+    display: block;
+  }
+}

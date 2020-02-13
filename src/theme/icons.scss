@@ -1,0 +1,168 @@
+@mixin size($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+.icn {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: block;
+  transition: opacity ease 0.2s;
+
+  &--ios-add,
+  &--ios-settings {
+    @include size(20px, 20px);
+    display: inline-block;
+    margin: 0 3px;
+    @media screen and (max-width: $xs) {
+      @include size(15px, 15px);
+    }
+  }
+
+  &--plan{
+    @include size(19px, 19px);
+    background-image: url('/assets/icons/plan.svg');
+  }
+
+  &--profilee{
+    @include size(19px, 19px);
+    background-image: url('/assets/icons/profilee.svg');
+  }
+
+  &--logout{
+    @include size(19px, 19px);
+    background-image: url('/assets/icons/logout.svg');
+  }
+
+  &--grid {
+    @include size(30px, 30px);
+    background-image: url('/assets/icons/grid.svg');
+  }
+
+  &--list {
+    @include size(30px, 30px);
+    background-image: url('/assets/icons/list.svg');
+  }
+
+  &--profile-arrow {
+    @include size(10px, 16px);
+    background-image: url('/assets/icons/profile-arrow_black.svg');
+  }
+
+  &--ios-add {
+    background-image: url('/assets/icons/ios-add.svg');
+  }
+  &--ios-settings {
+    background-image: url('/assets/icons/ios-settings.svg');
+  }
+
+  &--dots {
+    @include size(17px, 10px);
+    background-image: url('/assets/icons/dots.svg');
+  }
+
+  &--folder {
+    @include size(30px, 30px);
+    background-image: url('/assets/icons/folder.svg');
+  }
+
+  &--arrow-down{
+    @include size(30px, 30px);
+    background-image: url('/assets/icons/arrow-down.svg');
+  }
+
+  &--arrow-up{
+    @include size(30px, 30px);
+    background-image: url('/assets/icons/up-arrow.svg');
+  }
+
+  &--ok{
+    @include size(30px, 30px);
+    background-image: url('/assets/icons/img-statee-icon.svg');
+  }
+
+  &--file-img{
+    @include size(30px, 30px);
+    background-image: url('/assets/icons/img-uploading-icon.svg');
+  }
+
+  
+
+  &--checkbox,
+  &--checkbox-checked,
+  &--checkbox-round,
+  &--checkbox-round-checked {
+    @include size(18px, 18px);
+  }
+  &--checkbox {
+    background-image: url('/assets/icons/checkbox.svg');
+  }
+  &--checkbox-checked {
+    background-image: url('/assets/icons/checkbox-checked.svg');
+  }
+  &--checkbox-round {
+    background-image: url('/assets/icons/checkbox-round.svg');
+  }
+  &--checkbox-round-checked {
+    background-image: url('/assets/icons/checkbox-round-checked.svg');
+  }
+
+  &--heart {
+    @include size(18.6px, 16.8px);
+    background-image: url('/assets/images/like-heart.svg');
+    &-active {
+      background-image: url('/assets/images/like-heart-active.svg');
+    }
+  }
+  &--close,
+  &--share,
+  &--copy,
+  &--search,
+  &--arrow-down,
+  &--arrow-up {
+    cursor: pointer;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+  &--search {
+    @include size(18px, 18px);
+    background-image: url('/assets/icons/search.svg');
+  }
+  &--close {
+    @include size(14px, 14px);
+    background-image: url('/assets/icons/close.svg');
+  }
+  &--share {
+    @include size(20px, 20px);
+    background-image: url('/assets/icons/share.png');
+  }
+  &--copy {
+    @include size(20px, 20px);
+    background-image: url('/assets/icons/copy.svg');
+  }
+  &--instagram,
+  &--facebook,
+  &--twitter,
+  &--google-login,
+  &--facebook-login {
+    @include size(22px, 22px);
+  }
+
+  &--instagram {
+    background-image: url('/assets/icons/instagram.svg');
+  }
+  &--facebook {
+    background-image: url('/assets/icons/facebook.svg');
+  }
+  &--twitter {
+    background-image: url('/assets/icons/twitter.svg');
+  }
+  &--google-login {
+    background-image: url('/assets/icons/google-login.svg');
+  }
+  &--facebook-login {
+    background-image: url('/assets/icons/facebook-login.svg');
+  }
+}

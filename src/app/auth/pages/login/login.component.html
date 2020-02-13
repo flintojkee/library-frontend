@@ -1,0 +1,18 @@
+<div class="login">
+  <h2 class="login__header">Sign in</h2>
+  <p class="login__subheader">
+    Please sign in using your email address and password
+  </p>
+  <lbr-form-login [formGroup]="loginForm" (submittedForm)="login($event)"></lbr-form-login>
+
+  <p class="login__signup-question">
+    Don`t have an account?
+    <a
+      class="link link--primary"
+      [routerLink]="['/auth/signup']"
+      routerLinkActive="router-link-active"
+      >Sign up</a
+    >
+  </p>
+  {{ res | json }}
+</div>

@@ -1,0 +1,41 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+  <div class="form__input-wrapper">
+    <div class="form__input">
+      <phb-input [control]="fullName" label="Full name:" [autocomplete]="'username'"></phb-input>
+    </div>
+    <div class="form__input">
+      <phb-input [control]="email" label="Email Address:" [autocomplete]="'username'"></phb-input>
+    </div>
+    <div class="form__input">
+      <phb-input
+        [control]="password"
+        label="Password:"
+        type="password"
+        [autocomplete]="'new-password'"
+      ></phb-input>
+    </div>
+    <div class="form__input">
+      <phb-input
+        [control]="retypedPassword"
+        label="Retype password:"
+        [autocomplete]="'new-password'"
+        type="password"
+      ></phb-input>
+    </div>
+  </div>
+  <div class="form__utils-wrapper fw">
+    <phb-checkbox [control]="terms" round="true"
+      >I Agree with
+      <a [routerLink]="['/terms']" routerLinkActive="router-link-active"
+        ><strong>Terms of Use</strong></a
+      ></phb-checkbox
+    >
+  </div>
+  <div class="form__buttons-wrapper">
+    <div class="form__submit-button-wrapper">
+      <phb-button [buttonType]="'submit'" [type]="'default'" [color]="'primary'"
+        >Sign up</phb-button
+      >
+    </div>
+  </div>
+</form>
