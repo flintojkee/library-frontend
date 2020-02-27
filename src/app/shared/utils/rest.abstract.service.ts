@@ -1,9 +1,10 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { UserUrls } from '@library/app/config/api.config';
+import { UserUrls, BookUrls } from '@library/app/config/api.config';
 export abstract class RestService {
   protected userUrls = UserUrls;
+  protected bookUrls = BookUrls;
   private apiUrl = environment.apiUrl;
 
   constructor(protected http: HttpClient) {}

@@ -1,0 +1,13 @@
+<ion-item class="ion-margin-vertical" [routerLink]="book.id" detail>
+  <ion-avatar class="book-item__avatar" slot="start">
+    <ion-icon size="medium" name="book"></ion-icon>
+  </ion-avatar>
+  <ion-label>
+    <h2>{{ book.name }}</h2>
+    <h3 *ngIf="book.category">{{ book.category.name }}</h3>
+    <h4>
+      <span *ngFor="let a of book.authors">{{ a.fullName }} </span>
+    </h4>
+    <p>{{ book.publishingHouse }} {{ book.city }} {{ book.publishingYear }}</p>
+  </ion-label>
+</ion-item>

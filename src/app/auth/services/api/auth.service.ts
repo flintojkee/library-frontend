@@ -4,12 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { LoginForm } from '@library/app/models/forms';
 import { IUserLogin } from '@library/app/models';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService extends RestService {
-  constructor(http: HttpClient) {
+  constructor(http: HttpClient, private router: Router) {
     super(http);
   }
   login(credentials: LoginForm) {
@@ -18,6 +19,9 @@ export class AuthService extends RestService {
         return res;
       })
     );
+  }
+  logout() {
+    this.router.navigate(['auth/login']);
   }
   sigUp(credentials: any) {
     return this.post<any, any>(this.userUrls.signup, credentials).pipe(

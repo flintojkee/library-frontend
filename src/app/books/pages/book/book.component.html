@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/books/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ isLoading ? 'Loading...' : book.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div text-center *ngIf="isLoading">
+    <ion-spinner color="primary"></ion-spinner>
+  </div>
+  <ion-grid no-padding *ngIf="!isLoading">
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" text-center padding>
+        <p>{{ book.category?.name }}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3" text-center>
+        <ion-button color="primary" margin
+          >Edit</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

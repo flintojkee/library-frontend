@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthFormsService, AuthService } from '@library/app/auth/services';
 import { LoginForm } from '@library/app/models/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'lbr-login',
@@ -10,7 +11,7 @@ import { LoginForm } from '@library/app/models/forms';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
-  constructor(private authForms: AuthFormsService, private authService: AuthService) {}
+  constructor(private authForms: AuthFormsService, private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.createForm();
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(credentials: LoginForm) {
     this.authService.login(credentials).subscribe((res) => {
+        this.router.navigate(['books']);
     });
   }
 

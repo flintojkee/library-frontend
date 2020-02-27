@@ -1,5 +1,5 @@
 <ion-app>
-  <ion-menu side="start" contentId="menuContent">
+  <ion-menu side="start" contentId="menuContent" menuId="main">
     <ion-header>
       <ion-toolbar color="primary">
         <ion-title>Menu</ion-title>
@@ -7,15 +7,17 @@
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
+      <ion-menu-toggle>
+        <ion-item [routerLink]="'books'" >Books</ion-item>
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-item (click)="logout()">Logout</ion-item>
+      </ion-menu-toggle>
       </ion-list>
     </ion-content>
   </ion-menu>
-
+  <ion-router-outlet id="menuContent" main></ion-router-outlet>
+<!-- 
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar>
@@ -28,7 +30,6 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-router-outlet id="menuContent" main></ion-router-outlet>
     </ion-content>
-  </div>
+  </div> -->
 </ion-app>

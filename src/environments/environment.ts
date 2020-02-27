@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://cors-anywhere.herokuapp.com/https://library2020.herokuapp.com/api/'
+  apiUrl: 'https://library2020.herokuapp.com/api/'
 };
 
 /*
