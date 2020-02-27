@@ -1,3 +1,7 @@
+export enum Role {
+  user = 'user'
+}
+
 class AuthForm {
   email: string;
   password: string;
@@ -17,7 +21,7 @@ export class LoginForm extends AuthForm {
 
 export class SignUpForm extends AuthForm {
   fullName: string;
-  dateOfBirth: Date | string;
+  dateOfBirth: string;
   address: string;
   constructor() {
     super();
@@ -26,3 +30,4 @@ export class SignUpForm extends AuthForm {
     this.address = null;
   }
 }
+

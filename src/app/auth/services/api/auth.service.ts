@@ -19,4 +19,12 @@ export class AuthService extends RestService {
       })
     );
   }
+  sigUp(credentials: any) {
+    return this.post<any, any>(this.userUrls.signup, credentials).pipe(
+      map((res: any) => {
+        console.log(res);
+        return res;
+      })
+    );
+  }
 }

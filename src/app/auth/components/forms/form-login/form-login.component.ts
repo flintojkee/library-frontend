@@ -12,8 +12,6 @@ export class FormLoginComponent
   implements OnInit, IFormComponent<LoginForm>, formProperties<LoginForm>, OnDestroy {
   @Input() formGroup: FormGroup;
   @Output() submittedForm = new EventEmitter();
-  @Output() googleLogin = new EventEmitter<string>();
-  @Output() facebookLogin = new EventEmitter<string>();
   email: AbstractControl;
   password: AbstractControl;
   constructor() {}
@@ -32,11 +30,5 @@ export class FormLoginComponent
   @validateForm('formGroup')
   onSubmit(formData: LoginForm): void {
     this.submittedForm.emit(formData);
-  }
-  googleLoggedIn(id: string) {
-    this.googleLogin.emit(id);
-  }
-  facebookLoggedIn(id: string) {
-    this.facebookLogin.emit(id);
   }
 }

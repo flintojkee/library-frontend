@@ -1,19 +1,41 @@
 <div class="form-wrapper" margin-bottom>
   <form [formGroup]="formGroup" [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
-    <ion-item>
-      <ion-item>
-        <ion-label name="email" position="floating">Email</ion-label>
-        <ion-input [formControl]="email"></ion-input>
-      </ion-item>
-    </ion-item>
-    <ion-item>
-      <ion-item>
-        <ion-label name="password" position="floating">Password</ion-label>
-        <ion-input [formControl]="password" type="password"></ion-input>
-      </ion-item>
-    </ion-item>
-    <ion-button type="submit">
-      Sign in
-    </ion-button>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" >
+          <ion-list>
+            <ion-item>
+              <ion-label name="email" position="floating">Email</ion-label>
+              <ion-input [formControl]="email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label name="password" position="floating">Password</ion-label>
+              <ion-input [formControl]="password" type="password"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12">
+          <ion-button
+            type="button"
+            color="primary"
+            fill="clear"
+            expand="block"
+            [routerLink]="['/auth/sign-up']"
+          >
+            SignUp
+          </ion-button>
+          <ion-button
+            type="submit"
+            color="primary"
+            expand="block"
+            [disabled]="!formGroup.valid"
+          >
+            Login
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </div>

@@ -10,7 +10,6 @@ import { LoginForm } from '@library/app/models/forms';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
-  res: any;
   constructor(private authForms: AuthFormsService, private authService: AuthService) {}
 
   ngOnInit() {
@@ -21,8 +20,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(credentials: LoginForm) {
     this.authService.login(credentials).subscribe((res) => {
-      console.log(res);
-      this.res = res;
     });
   }
 

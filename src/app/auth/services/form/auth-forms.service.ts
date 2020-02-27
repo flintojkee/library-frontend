@@ -33,11 +33,10 @@ export class AuthFormsService {
       email: [requiredValidator('Email Address'), emailValidator()],
       password: [
         requiredValidator('Password'),
-        minLengthValidator('Minimum length of password is', 7),
-        passwordValidator()
+        minLengthValidator('Minimum length of password is', 4),
       ],
       address: [requiredValidator('Address')],
-      dateOfBirth: [requiredValidator('Date of Birh')]
+      dateOfBirth: [requiredValidator('Date of Birth')]
     };
 
     const controls = this.formService.createFormControls(initialValues, validators);
