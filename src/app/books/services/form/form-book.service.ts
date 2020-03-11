@@ -22,7 +22,7 @@ export class FormBookService {
       price: [requiredValidator('Price')],
       authors: [],
       numberOfInstances: [requiredValidator('Name')],
-      category: [],
+      category: [requiredValidator('Category')],
       description: [requiredValidator('Description')]
     };
 
