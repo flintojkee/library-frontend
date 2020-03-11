@@ -1,0 +1,59 @@
+<form [formGroup]="formGroup" [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+  <ion-grid class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <ion-list>
+          <ion-item class="ion-margin-vertical">
+            <ion-label name="name" position="floating">Name</ion-label>
+            <ion-input [formControl]="name"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label name="publishingHouse" position="floating">Publishing house</ion-label>
+            <ion-input [formControl]="publishingHouse"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label name="publishingYear" position="floating">Publishing Year</ion-label>
+            <ion-input [formControl]="publishingYear" type="number"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label name="city" position="floating">City</ion-label>
+            <ion-input [formControl]="city"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label name="numberOfPages" position="floating">Number Of Pages</ion-label>
+            <ion-input [formControl]="numberOfPages" type="number"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label name="price" position="floating">Price</ion-label>
+            <ion-input [formControl]="price" type="number"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label name="authors" position="floating">Authors</ion-label>
+            <ion-input [formControl]="authors"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label name="numberOfInstances" position="floating">Number of instances</ion-label>
+            <ion-input [formControl]="numberOfInstances" type="number"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label>Category</ion-label>
+            <ion-select [formControl]="category" value="brown" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="brown">Uncategorized</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label position="floating">Description</ion-label>
+            <ion-textarea [formControl]="description"></ion-textarea>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button type="submit" color="primary" expand="block" [disabled]="!formGroup.valid">
+          Create book
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</form>

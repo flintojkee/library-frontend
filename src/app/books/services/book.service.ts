@@ -3,6 +3,7 @@ import { RestService } from '@library/app/shared/utils';
 import { HttpClient } from '@angular/common/http';
 import { Book } from '@library/app/models';
 import { BehaviorSubject } from 'rxjs';
+import { CreateBookForm } from '@library/app/models/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -31,12 +32,12 @@ export class BookService extends RestService {
     return this.get<Book[]>(url);
   }
 
-  addBook(book: Book) {
-    return this.post<Book, Book>(this.bookUrls.books, book);
+  createBook(book: CreateBookForm) {
+    return this.post<CreateBookForm, Book>(this.bookUrls.books, book);
   }
 
-  updateBook(book: Book, id: number) {
-    return this.put<Book, Book>(this.bookUrls.book.replace('{id}', `${id}`), book);
+  updateBook(book: CreateBookForm, id: number) {
+    return this.put<CreateBookForm, Book>(this.bookUrls.book.replace('{id}', `${id}`), book);
   }
 
   getBookById(id: number) {

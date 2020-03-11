@@ -9,11 +9,11 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid no-padding>
+  <ion-grid class="ion-padding">
     <ion-row>
       <ion-col size-sm="12" offset-sm="3" text-center padding>
         <lbr-books-list class="books__list" [books$]="books$"> </lbr-books-list>
-        <ion-button (click)="addNewBook()">Add new book</ion-button>
+        <ion-button expand="block" (click)="addNewBook()">Add new book</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

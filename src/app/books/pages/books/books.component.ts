@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import { Book } from '../../../models';
 import { BookService } from '../../services/book.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { ModalController } from '@ionic/angular';
+import { ModalCreateBookComponent } from '../../components/modals';
 
 @Component({
   selector: 'lbr-books',
@@ -11,7 +13,7 @@ import { untilDestroyed } from 'ngx-take-until-destroy';
 })
 export class BooksComponent implements OnInit, OnDestroy {
   books$: Observable<Book[]>;
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private modalController: ModalController) {}
 
   ngOnInit() {
     this.books$ = this.bookService.books;
@@ -28,7 +30,11 @@ export class BooksComponent implements OnInit, OnDestroy {
         this.bookService.setBooks(res);
       });
   }
-  addNewBook() {
-    
+  async addNewBook() {
+    const modal = await this.modalController.create({
+      component: ModalCreateBookComponent,
+      swipeToClose: true
+    });
+    return await modal.present();
   }
 }

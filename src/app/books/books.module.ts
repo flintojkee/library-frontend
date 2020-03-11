@@ -7,14 +7,19 @@ import { BooksListComponent } from './components/books-list/books-list.component
 import { SharedModule } from '../shared/shared.module';
 import { BookItemComponent } from './components/book-item/book-item.component';
 import { BookComponent } from './pages/book/book.component';
-
+import { ModalCreateBookComponent } from './components/modals/modal-create-book/modal-create-book.component';
+import { FormCreateBookComponent } from './components/forms/form-create-book/form-create-book.component';
 
 @NgModule({
-  declarations: [BooksComponent, BooksListComponent, BookItemComponent, BookComponent],
-  imports: [
-    CommonModule,
-    BooksRoutingModule,
-    SharedModule
-  ]
+  declarations: [
+    BooksComponent,
+    BooksListComponent,
+    BookItemComponent,
+    BookComponent,
+    ModalCreateBookComponent,
+    FormCreateBookComponent
+  ],
+  imports: [CommonModule, BooksRoutingModule, SharedModule],
+  entryComponents: [ModalCreateBookComponent]
 })
-export class BooksModule { }
+export class BooksModule {}

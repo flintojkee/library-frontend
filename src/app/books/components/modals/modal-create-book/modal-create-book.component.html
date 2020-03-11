@@ -1,0 +1,13 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Create new book</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <lbr-form-create-book [formGroup]="createBookForm" (submittedForm)="createBook($event)">
+
+  </lbr-form-create-book>
+</ion-content>

@@ -4,7 +4,7 @@ import { FormGroup, AbstractControl } from '@angular/forms';
 export interface IFormComponent<T> {
   formGroup: FormGroup;
   submittedForm: EventEmitter<any>;
-  initFormControls(formGroup: FormGroup, props: AbstractControl[]): void;
+  initFormControls(props: string[]): void;
   onSubmit(formData: T): void;
 }
 
