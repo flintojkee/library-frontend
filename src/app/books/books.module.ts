@@ -9,7 +9,6 @@ import { BookItemComponent } from './components/book-item/book-item.component';
 import { BookComponent } from './pages/book/book.component';
 import { ModalCreateBookComponent } from './components/modals/modal-create-book/modal-create-book.component';
 import { FormCreateBookComponent } from './components/forms/form-create-book/form-create-book.component';
-
 @NgModule({
   declarations: [
     BooksComponent,

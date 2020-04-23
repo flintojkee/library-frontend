@@ -1,8 +1,8 @@
 <ion-item class="ion-margin-vertical" [routerLink]="book.id" detail>
-  <ion-avatar class="book-item__avatar" slot="start">
-    <ion-icon size="medium" name="book"></ion-icon>
-  </ion-avatar>
-  <ion-label>
+  <ion-thumbnail slot="start">
+    <ion-img [src]="book.picture"></ion-img>
+  </ion-thumbnail>
+  <ion-label class="ion-padding">
     <h2>{{ book.name }}</h2>
     <h3 *ngIf="book.category">{{ book.category.name }}</h3>
     <h4>

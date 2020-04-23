@@ -8,6 +8,10 @@
             <ion-input [formControl]="name"></ion-input>
           </ion-item>
           <ion-item class="ion-margin-bottom">
+            <ion-label name="isbn" position="floating">ISBN</ion-label>
+            <ion-input type="number" [formControl]="isbn"></ion-input>
+          </ion-item>
+          <ion-item class="ion-margin-bottom">
             <ion-label name="publishingHouse" position="floating">Publishing house</ion-label>
             <ion-input [formControl]="publishingHouse"></ion-input>
           </ion-item>
@@ -45,6 +49,12 @@
             <ion-label position="floating">Description</ion-label>
             <ion-textarea [formControl]="description"></ion-textarea>
           </ion-item>
+          <ion-item class="ion-margin-bottom">
+            <ion-label position="fixed">Picture</ion-label>
+            <!-- <ion-button (click)="takePicture()">Take picture</ion-button> -->
+            <ion-input (change)="readURL($event.target.files);" type="file" accept="image/*"></ion-input>
+          </ion-item>
+          <img *ngIf="capturedPicture" [src]="capturedPicture" />
         </ion-list>
       </ion-col>
     </ion-row>

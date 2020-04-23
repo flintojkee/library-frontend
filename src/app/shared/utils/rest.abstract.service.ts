@@ -5,7 +5,7 @@ import { UserUrls, BookUrls } from '@library/app/config/api.config';
 export abstract class RestService {
   protected userUrls = UserUrls;
   protected bookUrls = BookUrls;
-  private apiUrl = environment.apiUrl;
+  protected apiUrl = environment.apiUrl;
 
   constructor(protected http: HttpClient) {}
 

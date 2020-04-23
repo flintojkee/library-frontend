@@ -9,7 +9,6 @@ import { CreateBookForm } from '@library/app/models/forms';
   providedIn: 'root'
 })
 export class BookService extends RestService {
-
   private _books = new BehaviorSubject<Array<Book>>([]);
 
   get books() {
@@ -33,7 +32,26 @@ export class BookService extends RestService {
   }
 
   createBook(book: CreateBookForm) {
-    return this.post<CreateBookForm, Book>(this.bookUrls.books, book);
+    console.log(book);
+    const body = new FormData();
+    body.append(
+      'picture',
+      new Blob([book.pictureFile], {
+        type: 'multipart/form-data'
+      })
+    );
+    const request = { ...book };
+    delete request.pictureFile;
+    // body.append('request', JSON.stringify({ ...book }));
+    body.append(
+      'request',
+      new Blob([JSON.stringify({ ...request })], {
+        type: 'application/json'
+      })
+    );
+    return this.http.post<FormData>(this.apiUrl + this.bookUrls.books, body, {
+      //headers: { 'Content-Type': undefined }
+    });
   }
 
   updateBook(book: CreateBookForm, id: number) {

@@ -8,13 +8,13 @@ import { requiredValidator, emailValidator } from '@library/app/shared/utils';
   providedIn: 'root'
 })
 export class FormBookService {
-
   constructor(private formService: FormService, private formBuilder: FormBuilder) {}
 
   getCreateBookForm(): FormGroup {
     const initialValues: OptionalType<CreateBookForm> = new CreateBookForm();
     const validators: fieldsValidators<CreateBookForm> = {
       name: [requiredValidator('Name')],
+      isbn: [requiredValidator('ISBN')],
       publishingHouse: [requiredValidator('Publishing house')],
       publishingYear: [requiredValidator('Publishing year')],
       city: [requiredValidator('City')],
@@ -23,7 +23,8 @@ export class FormBookService {
       authors: [],
       numberOfInstances: [requiredValidator('Name')],
       category: [requiredValidator('Category')],
-      description: [requiredValidator('Description')]
+      description: [requiredValidator('Description')],
+      pictureFile: [requiredValidator('Picture')]
     };
 
     const controls = this.formService.createFormControls(initialValues, validators);

@@ -4,7 +4,9 @@ import { Category } from './category.model';
 
 export interface Book {
   id?: number;
+  isbn: number;
   name: string;
+  picture: string;
   publishingHouse: string;
   publishingYear: number;
   city: string;
@@ -15,15 +17,3 @@ export interface Book {
   bookInstances: BookInstance[];
   category?: Category;
 }
-
-// {
-//   "name": "Booook 2",
-//   "publishingHouse": "Raflan",
-//   "publishingYear": "1488",
-//   "city": "Lviv",
-//   "numberOfPages": 100,
-//   "price": 1000,
-//   "authors": ["Vova","Vasya"],
-//   "numberOfInstances": 1,
-//   "category": "Uncategorized"
-// }

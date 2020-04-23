@@ -33,7 +33,7 @@ export class AuthFormsService {
       email: [requiredValidator('Email Address'), emailValidator()],
       password: [
         requiredValidator('Password'),
-        minLengthValidator('Minimum length of password is', 4),
+        minLengthValidator('Minimum length of password is', 6),
       ],
       address: [requiredValidator('Address')],
       dateOfBirth: [requiredValidator('Date of Birth')]
