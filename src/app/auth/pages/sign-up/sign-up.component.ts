@@ -22,7 +22,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   signUp(credentials: SignUpForm) {
     const date = credentials.dateOfBirth.split('T')[0];
-    const role = [Role.admin];
+    const role = [Role.user];
     const user = {
       ...credentials,
       dateOfBirth: date,
