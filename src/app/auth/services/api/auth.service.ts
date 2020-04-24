@@ -26,9 +26,7 @@ export class AuthService extends RestService {
   get userSubject() {
     return this.user$;
   }
-  private role$ = new BehaviorSubject<UserRoles>(
-    JSON.parse(localStorage.getItem('user')).roles[0] || null
-  );
+  private role$: BehaviorSubject<UserRoles>;
   get roleSubject() {
     return this.role$;
   }
@@ -40,6 +38,8 @@ export class AuthService extends RestService {
   }
   constructor(http: HttpClient, private router: Router) {
     super(http);
+    const user = JSON.parse(localStorage.getItem('user'));
+    this.role$ = user ? new BehaviorSubject<UserRoles>(user) : new BehaviorSubject<UserRoles>(null);
   }
   isAuthenticated() {
     return !!this.user$.value.accessToken;
