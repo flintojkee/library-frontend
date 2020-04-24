@@ -7,7 +7,8 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
   },
-  { path: 'books', loadChildren: () => import('./books/books.module').then(m => m.BooksModule) }
+  { path: 'books', loadChildren: () => import('./books/books.module').then(m => m.BooksModule) },
+  { path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],

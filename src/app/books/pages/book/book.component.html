@@ -1,28 +1,68 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/books/"></ion-back-button>
+      <ion-back-button defaultHref="/books"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ isLoading ? 'Loading...' : book.name }}</ion-title>
+    <ion-title style="padding: 0 50px 0 70px;">{{
+      isLoading ? 'Loading...' : book.name
+    }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-refresher slot="fixed" (ionRefresh)="getBook($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <div text-center *ngIf="isLoading">
     <ion-spinner color="primary"></ion-spinner>
   </div>
   <ion-grid no-padding *ngIf="!isLoading">
-    <ion-row>
-      <ion-col size-sm="6" offset-sm="3" text-center padding>
-        <p>{{ book.category?.name }}</p>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size-sm="6" offset-sm="3" text-center>
-        <ion-button color="primary" margin
-          >Edit</ion-button
-        >
-      </ion-col>
-    </ion-row>
+    <ion-card>
+      <div class="book__image">
+        <ion-img [src]="book.picture"></ion-img>
+      </div>
+      <ion-card-header class="book__header">
+        <ion-card-subtitle>{{ book?.category?.name }}</ion-card-subtitle>
+        <ion-card-title>{{ book?.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label>{{ book?.numberOfPages }} pages</ion-label>
+          <ion-icon slot="end" name="book-outline"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" *ngIf="book?.authors?.length > 0">
+          <ion-label
+            >By
+            <span *ngFor="let author of book?.authors"> {{ author?.fullName }} </span></ion-label
+          >
+          <ion-icon slot="end" name="people-outline"></ion-icon>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>{{ book?.publishingYear }} {{ book?.publishingHouse }}</ion-label>
+          <ion-icon slot="end" name="business-outline"></ion-icon>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label>{{ book?.price }} $</ion-label>
+          <ion-icon slot="end" name="cash-outline"></ion-icon>
+        </ion-item>
+        <ion-item lines="none" *ngIf="book.bookInstances">
+          <ion-label>{{ isPresent ? 'Available' : 'Unavailable' }}</ion-label>
+          <ion-icon slot="end" name="library-outline"></ion-icon>
+        </ion-item>
+        <p class="book__description">{{ book?.description }}</p>
+      </ion-card-content>
+      <ion-button [disabled]="!isPresent()" expand="block" (click)="orderBook()">Order</ion-button>
+    </ion-card>
+
   </ion-grid>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" (click)="editBook(book)">
+      <ion-icon name="create-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

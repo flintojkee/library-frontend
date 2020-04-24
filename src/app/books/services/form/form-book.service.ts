@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { FormService } from '@library/app/core/services/form';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CreateBookForm, OptionalType, fieldsValidators } from '@library/app/models/forms';
+import { BookForm, OptionalType, fieldsValidators } from '@library/app/models/forms';
 import { requiredValidator, emailValidator } from '@library/app/shared/utils';
+import { Book, Author } from '@library/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,23 @@ import { requiredValidator, emailValidator } from '@library/app/shared/utils';
 export class FormBookService {
   constructor(private formService: FormService, private formBuilder: FormBuilder) {}
 
-  getCreateBookForm(): FormGroup {
-    const initialValues: OptionalType<CreateBookForm> = new CreateBookForm();
-    const validators: fieldsValidators<CreateBookForm> = {
+  getBookForm(book?: Book): FormGroup {
+    const initialValues: OptionalType<BookForm> = book
+      ? new BookForm(
+          book.name,
+          book.isbn,
+          book.publishingHouse,
+          book.publishingYear,
+          book.city,
+          book.numberOfPages,
+          book.price,
+          book.authors as Author[],
+          book.numberOfInstances,
+          book.category,
+          book.description
+        )
+      : new BookForm();
+    const validators: fieldsValidators<BookForm> = {
       name: [requiredValidator('Name')],
       isbn: [requiredValidator('ISBN')],
       publishingHouse: [requiredValidator('Publishing house')],
@@ -24,7 +39,7 @@ export class FormBookService {
       numberOfInstances: [requiredValidator('Name')],
       category: [requiredValidator('Category')],
       description: [requiredValidator('Description')],
-      pictureFile: [requiredValidator('Picture')]
+      pictureFile: []
     };
 
     const controls = this.formService.createFormControls(initialValues, validators);

@@ -9,6 +9,7 @@ import { BookItemComponent } from './components/book-item/book-item.component';
 import { BookComponent } from './pages/book/book.component';
 import { ModalCreateBookComponent } from './components/modals/modal-create-book/modal-create-book.component';
 import { FormCreateBookComponent } from './components/forms/form-create-book/form-create-book.component';
+import { ModalCreateOrderComponent } from './components/modals/modal-create-order/modal-create-order.component';
 @NgModule({
   declarations: [
     BooksComponent,
@@ -16,9 +17,10 @@ import { FormCreateBookComponent } from './components/forms/form-create-book/for
     BookItemComponent,
     BookComponent,
     ModalCreateBookComponent,
-    FormCreateBookComponent
+    FormCreateBookComponent,
+    ModalCreateOrderComponent
   ],
   imports: [CommonModule, BooksRoutingModule, SharedModule],
-  entryComponents: [ModalCreateBookComponent]
+  entryComponents: [ModalCreateBookComponent, ModalCreateOrderComponent]
 })
 export class BooksModule {}

@@ -6,14 +6,15 @@ export interface Book {
   id?: number;
   isbn: number;
   name: string;
-  picture: string;
+  picture?: string;
   publishingHouse: string;
   publishingYear: number;
   city: string;
   numberOfPages: number;
   price: number;
-  authors?: Author[];
+  authors?: Author[] | string[] | string;
   numberOfInstances: number;
-  bookInstances: BookInstance[];
+  bookInstances?: BookInstance[];
   category?: Category;
+  description: string;
 }

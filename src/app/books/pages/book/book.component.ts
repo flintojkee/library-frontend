@@ -4,6 +4,10 @@ import { BookService } from '../../services/book.service';
 import { ActivatedRoute } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { switchMap } from 'rxjs/operators';
+import { ModalController } from '@ionic/angular';
+import { ModalCreateBookComponent } from '../../components/modals';
+import { BookForm } from '@library/app/models/forms';
+import { ModalCreateOrderComponent } from '../../components/modals/modal-create-order/modal-create-order.component';
 
 @Component({
   templateUrl: './book.component.html',
@@ -12,10 +16,49 @@ import { switchMap } from 'rxjs/operators';
 export class BookComponent implements OnInit, OnDestroy {
   book: Book;
   isLoading: boolean;
-  constructor(private bookService: BookService, private route: ActivatedRoute) {}
+  constructor(
+    private bookService: BookService,
+    private route: ActivatedRoute,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {
     this.isLoading = true;
+    this.getBook();
+  }
+
+  ngOnDestroy() {}
+
+  isPresent() {
+    return this.book.bookInstances.some((b) => b.isPresent === true);
+  }
+
+  async editBook(book: Book) {
+    const modal = await this.modalController.create({
+      component: ModalCreateBookComponent,
+      componentProps: {
+        mode: 'edit',
+        book
+      },
+      swipeToClose: true
+    });
+    return await modal.present();
+  }
+
+  async orderBook() {
+    const modal = await this.modalController.create({
+      component: ModalCreateOrderComponent,
+      componentProps: {
+        book: this.book
+      },
+      swipeToClose: true
+    });
+    return await modal.present().then((res) => {
+      console.log(res);
+    });
+  }
+
+  getBook(event?) {
     this.route.params
       .pipe(
         switchMap((p) => this.bookService.getBookById(p['id'])),
@@ -24,8 +67,9 @@ export class BookComponent implements OnInit, OnDestroy {
       .subscribe((book) => {
         this.book = book;
         this.isLoading = false;
+        if (event) {
+          event.target.complete();
+        }
       });
   }
-
-  ngOnDestroy() {}
 }

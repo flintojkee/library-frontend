@@ -7,7 +7,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <lbr-form-create-book [formGroup]="createBookForm" (submittedForm)="createBook($event)">
-
+  <lbr-form-create-book [formGroup]="bookForm" (submittedForm)="submitForm($event)">
   </lbr-form-create-book>
 </ion-content>

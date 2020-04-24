@@ -1,0 +1,27 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>Order book</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <ion-item lines="none" class="order__date">
+    <ion-label name="expectedReturnDate" position="floating">Expected return Date</ion-label>
+    <ion-datetime
+      [min]="minDate"
+      [formControl]="expectedReturnDate"
+      placeholder="Expected return Date"
+    ></ion-datetime>
+  </ion-item>
+  <ion-button
+    (click)="submitForm()"
+    type="submit"
+    color="primary"
+    expand="block"
+    [disabled]="!expectedReturnDate.valid"
+  >
+    Submit
+  </ion-button>
+</ion-content>

@@ -22,12 +22,15 @@ export class BooksComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {}
 
-  initBooks() {
+  initBooks(event?) {
     this.bookService
       .getBooks()
       .pipe(untilDestroyed(this))
       .subscribe((res: Book[]) => {
         this.bookService.setBooks(res);
+        if (event) {
+          event.target.complete();
+        }
       });
   }
   async addNewBook() {

@@ -1,0 +1,16 @@
+.book {
+  &__image {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+    ion-image {
+      max-width: 200px;
+    }
+  }
+  &__header {
+    padding: 20px;
+  }
+  &__description {
+    font-size: 17px;
+  }
+}

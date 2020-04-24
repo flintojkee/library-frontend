@@ -11,7 +11,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
-  constructor(private authForms: AuthFormsService, private authService: AuthService, private router: Router) {}
+  constructor(
+    private authForms: AuthFormsService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.createForm();
@@ -21,7 +25,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   login(credentials: LoginForm) {
     this.authService.login(credentials).subscribe((res) => {
-        this.router.navigate(['books']);
+      console.log(res);
+      this.router.navigate(['books']);
     });
   }
 

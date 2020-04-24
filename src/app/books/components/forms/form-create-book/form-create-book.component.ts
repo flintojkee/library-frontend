@@ -7,7 +7,7 @@ import {
   Output,
   EventEmitter
 } from '@angular/core';
-import { CreateBookForm, IFormComponent, formProperties } from '@library/app/models/forms';
+import { BookForm, IFormComponent, formProperties } from '@library/app/models/forms';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { validateForm } from '@library/app/shared/decorators';
 import { BaseFormComponent } from '@library/app/shared/utils';
@@ -19,8 +19,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./form-create-book.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormCreateBookComponent extends BaseFormComponent<CreateBookForm>
-  implements OnInit, IFormComponent<CreateBookForm>, formProperties<CreateBookForm>, OnDestroy {
+export class FormCreateBookComponent extends BaseFormComponent<BookForm>
+  implements OnInit, IFormComponent<BookForm>, formProperties<BookForm>, OnDestroy {
   name: AbstractControl;
   isbn: AbstractControl;
   publishingHouse: AbstractControl;
@@ -39,7 +39,8 @@ export class FormCreateBookComponent extends BaseFormComponent<CreateBookForm>
   }
 
   ngOnInit() {
-    this.initFormControls(Object.getOwnPropertyNames(new CreateBookForm()));
+    console.log(this.formGroup);
+    this.initFormControls(Object.getOwnPropertyNames(new BookForm()));
   }
   ngOnDestroy() {}
   readURL(file) {

@@ -1,4 +1,7 @@
-export class CreateBookForm {
+import { Category } from '../category.model';
+import { Book, Author } from '..';
+
+export class BookForm implements Book {
   name: string;
   isbn: number;
   publishingHouse: string;
@@ -6,23 +9,35 @@ export class CreateBookForm {
   city: string;
   numberOfPages: number;
   price: number;
-  authors: string[];
+  authors: string[] | string;
   numberOfInstances: number;
-  category: string;
+  category: Category;
   description: string;
   pictureFile: File;
-  constructor() {
-    this.name = 'null';
-    this.isbn = 22222222;
-    this.publishingHouse = 'null';
-    this.publishingYear = 2000;
-    this.city = 'null';
-    this.numberOfPages = 20;
-    this.price = 20;
-    this.authors = ['Ivan'];
-    this.numberOfInstances = 1;
-    this.category = null;
-    this.description = 'null';
+  constructor(
+    name?: string,
+    isbn?: number,
+    publishingHouse?: string,
+    publishingYear?: number,
+    city?: string,
+    numberOfPages?: number,
+    price?: number,
+    authors?: Author[],
+    numberOfInstances?: number,
+    category?: Category,
+    description?: string,
+  ) {
+    this.name = name;
+    this.isbn = isbn;
+    this.publishingHouse = publishingHouse;
+    this.publishingYear = publishingYear;
+    this.city = city;
+    this.numberOfPages = numberOfPages;
+    this.price = price;
+    this.authors = authors && authors.length ? authors.map((a) => a.fullName) : [];
+    this.numberOfInstances = numberOfInstances;
+    this.category = category;
+    this.description = description;
     this.pictureFile = null;
   }
 }

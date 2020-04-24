@@ -7,3 +7,9 @@ export enum BookUrls {
   books = 'books/',
   book = 'books/{id}'
 }
+
+
+export enum OrderUrls {
+  orders = 'orders/',
+  order = 'orders/{id}'
+}

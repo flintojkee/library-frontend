@@ -3,15 +3,18 @@ import { ModalController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
 import { FormBookService } from '@library/app/books/services/form/form-book.service';
 import { BookService } from '@library/app/books/services/book.service';
-import { CreateBookForm } from '@library/app/models/forms';
+import { BookForm } from '@library/app/models/forms';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Book } from '@library/app/models';
 
 @Component({
   templateUrl: './modal-create-book.component.html',
   styleUrls: ['./modal-create-book.component.scss']
 })
 export class ModalCreateBookComponent implements OnInit, OnDestroy {
-  createBookForm: FormGroup;
+  mode: 'create' | 'edit' = 'create';
+  bookForm: FormGroup;
+  book: Book;
   constructor(
     private modalCtrl: ModalController,
     private formBookService: FormBookService,
@@ -19,14 +22,47 @@ export class ModalCreateBookComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.createBookForm = this.formBookService.getCreateBookForm();
+    switch (this.mode) {
+      case 'create':
+        this.bookForm = this.formBookService.getBookForm();
+        break;
+      case 'edit':
+        this.bookForm = this.formBookService.getBookForm(this.book);
+        break;
+      default:
+        break;
+    }
   }
 
   ngOnDestroy() {}
 
-  createBook(createBookForm: CreateBookForm) {
+  submitForm(bookForm: BookForm) {
+    switch (this.mode) {
+      case 'create':
+        this.createBook(bookForm);
+        break;
+      case 'edit':
+        this.editBook(bookForm);
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  createBook(bookForm: BookForm) {
     this.bookService
-      .createBook(createBookForm)
+      .createBook(bookForm)
+      .pipe(untilDestroyed(this))
+      .subscribe((res) => {
+        console.log(res);
+        this.modalCtrl.dismiss();
+      });
+  }
+  editBook(bookForm: BookForm) {
+    delete bookForm.authors;
+    this.bookService
+      .editBook(bookForm, this.book.id)
       .pipe(untilDestroyed(this))
       .subscribe((res) => {
         console.log(res);
