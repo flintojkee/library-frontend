@@ -56,13 +56,23 @@
         </ion-item>
         <p class="book__description">{{ book?.description }}</p>
       </ion-card-content>
-      <ion-button [disabled]="!isPresent()" expand="block" (click)="orderBook()">Order</ion-button>
+      <!-- <ion-button [disabled]="!isPresent()" expand="block" (click)="orderBook()">Order</ion-button> -->
     </ion-card>
-
   </ion-grid>
-  <ion-fab vertical="top" horizontal="end" slot="fixed">
-    <ion-fab-button color="secondary" (click)="editBook(book)">
-      <ion-icon name="create-outline"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+  <ng-container *ngIf="role$ | async as role">
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+      <ion-fab-button
+        *ngIf="role === userRoles.admin; else order"
+        color="secondary"
+        (click)="editBook(book)"
+      >
+        <ion-icon name="create-outline"></ion-icon>
+      </ion-fab-button>
+      <ng-template #order>
+        <ion-fab-button color="secondary" (click)="orderBook()">
+          <ion-icon name="cart-outline"></ion-icon>
+        </ion-fab-button>
+      </ng-template>
+    </ion-fab>
+  </ng-container>
 </ion-content>

@@ -2,25 +2,33 @@
   <ion-menu side="start" contentId="menuContent" menuId="main">
     <ion-header>
       <ion-toolbar color="primary">
-        <ion-title>Menu</ion-title>
+        <ion-title style="padding-left: 10px;">Menu</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list>
-      <ion-menu-toggle>
-        <ion-item [routerLink]="'books'" >Books</ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item [routerLink]="'orders'" >Orders</ion-item>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-item (click)="logout()">Logout</ion-item>
-      </ion-menu-toggle>
+      <ion-list *ngIf="role$ | async as role; else loginTmp">
+        <ion-menu-toggle>
+          <ion-item [routerLink]="'books'">Books</ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          
+          <ion-item [routerLink]="'orders'" *ngIf="role === userRoles.admin">Orders</ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item (click)="logout()">Logout</ion-item>
+        </ion-menu-toggle>
       </ion-list>
+      <ng-template #loginTmp>
+        <ion-list>
+          <ion-menu-toggle>
+            <ion-item (click)="login()">Login</ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ng-template>
     </ion-content>
   </ion-menu>
   <ion-router-outlet id="menuContent" main></ion-router-outlet>
-<!-- 
+  <!-- 
   <div class="ion-page" id="main-content">
     <ion-header>
       <ion-toolbar>

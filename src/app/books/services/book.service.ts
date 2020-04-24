@@ -67,12 +67,16 @@ export class BookService extends RestService {
 
   editBook(book: BookForm, id: number) {
     const body = new FormData();
-    body.append(
-      'picture',
-      new Blob([book.pictureFile], {
-        type: 'multipart/form-data'
-      })
-    );
+
+    if (book.pictureFile) {
+      body.append(
+        'picture',
+        new Blob([book.pictureFile], {
+          type: 'multipart/form-data'
+        })
+      );
+    }
+
     const request = { ...book };
     delete request.pictureFile;
     body.append(
@@ -94,5 +98,9 @@ export class BookService extends RestService {
 
   createOrder(order: Order) {
     return this.post<Order, string>(this.orderUrls.orders, order);
+  }
+
+  updateOrder(order: Order, id: number) {
+    return this.put<Order, string>(this.orderUrls.order.replace('{id}', `${id}`), order);
   }
 }

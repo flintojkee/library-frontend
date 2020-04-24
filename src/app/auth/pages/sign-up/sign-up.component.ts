@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { AuthFormsService, AuthService } from '../../services';
-import { SignUpForm, Role } from '@library/app/models/forms';
+import { SignUpForm } from '@library/app/models/forms';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { Role } from '@library/app/models';
 
 @Component({
   selector: 'lbr-sign-up',
@@ -21,7 +22,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   signUp(credentials: SignUpForm) {
     const date = credentials.dateOfBirth.split('T')[0];
-    const role = [Role.user];
+    const role = [Role.admin];
     const user = {
       ...credentials,
       dateOfBirth: date,

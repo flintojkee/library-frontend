@@ -1,6 +1,6 @@
 <ion-header translucent>
   <ion-toolbar>
-    <ion-title>Create new book</ion-title>
+    <ion-title>{{ mode === 'create' ? 'Create new book' : 'Edit book' }}</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="dismissModal()">Close</ion-button>
     </ion-buttons>

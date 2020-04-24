@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Book } from '@library/app/models';
+import { Book, UserRoles } from '@library/app/models';
 import { BookService } from '../../services/book.service';
 import { ActivatedRoute } from '@angular/router';
 import { untilDestroyed } from 'ngx-take-until-destroy';
@@ -8,6 +8,8 @@ import { ModalController } from '@ionic/angular';
 import { ModalCreateBookComponent } from '../../components/modals';
 import { BookForm } from '@library/app/models/forms';
 import { ModalCreateOrderComponent } from '../../components/modals/modal-create-order/modal-create-order.component';
+import { Observable } from 'rxjs';
+import { AuthService } from '@library/app/auth/services';
 
 @Component({
   templateUrl: './book.component.html',
@@ -16,14 +18,18 @@ import { ModalCreateOrderComponent } from '../../components/modals/modal-create-
 export class BookComponent implements OnInit, OnDestroy {
   book: Book;
   isLoading: boolean;
+  role$: Observable<UserRoles>;
+  userRoles = UserRoles;
   constructor(
     private bookService: BookService,
     private route: ActivatedRoute,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
     this.isLoading = true;
+    this.role$ = this.authService.role;
     this.getBook();
   }
 

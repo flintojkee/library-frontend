@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { IFormComponent, SignUpForm, formProperties, Role } from '@library/app/models/forms';
+import { IFormComponent, SignUpForm, formProperties } from '@library/app/models/forms';
 import { FormGroup, AbstractControl } from '@angular/forms';
 import { validateForm } from '@library/app/shared/decorators';
 import { BaseFormComponent } from '@library/app/shared/utils';

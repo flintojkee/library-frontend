@@ -5,6 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { BookService } from '@library/app/books/services/book.service';
 import { Order } from '@library/app/models/order.model';
 import { untilDestroyed } from 'ngx-take-until-destroy';
+import { AuthService } from '@library/app/auth/services';
 
 @Component({
   selector: 'lbr-modal-create-order',
@@ -16,7 +17,11 @@ export class ModalCreateOrderComponent implements OnInit, OnDestroy {
   private today = new Date();
   expectedReturnDate = new FormControl(new Date().toISOString(), [Validators.required]);
   minDate = this.today.toISOString();
-  constructor(private modalCtrl: ModalController, private bookService: BookService) {}
+  constructor(
+    private modalCtrl: ModalController,
+    private bookService: BookService,
+    private authService: AuthService
+  ) {}
   ngOnInit() {
     console.log(this.minDate);
   }
@@ -29,7 +34,7 @@ export class ModalCreateOrderComponent implements OnInit, OnDestroy {
   createOrder() {
     const order: Order = {
       expectedReturnDate: this.today.toISOString(),
-      userId: 1,
+      userId: this.authService.userSubject.value.id,
       bookInstanceId: this.book.bookInstances.filter((b) => b.isPresent)[0].id
     };
     this.bookService

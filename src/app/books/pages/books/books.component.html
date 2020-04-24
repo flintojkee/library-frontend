@@ -7,7 +7,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="role$ | async as role">
   <ion-refresher slot="fixed" (ionRefresh)="initBooks($event)">
     <ion-refresher-content
       pullingIcon="arrow-dropdown"
@@ -23,7 +23,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab *ngIf="role === userRoles.admin" vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="secondary" (click)="addNewBook()">
       <ion-icon name="add-circle-outline"></ion-icon>
     </ion-fab-button>

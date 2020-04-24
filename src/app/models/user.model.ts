@@ -7,4 +7,5 @@ export interface IUser {
   address: string;
   dateOfBirth: Date | string;
   roles: UserRoles[];
+  accessToken: string;
 }

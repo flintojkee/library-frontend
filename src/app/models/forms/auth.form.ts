@@ -1,6 +1,4 @@
-export enum Role {
-  user = 'user'
-}
+
 
 class AuthForm {
   email: string;

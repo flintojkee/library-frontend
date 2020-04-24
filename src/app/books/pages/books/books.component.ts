@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Book } from '../../../models';
+import { Book, UserRoles } from '../../../models';
 import { BookService } from '../../services/book.service';
 import { untilDestroyed } from 'ngx-take-until-destroy';
 import { ModalController } from '@ionic/angular';
 import { ModalCreateBookComponent } from '../../components/modals';
+import { AuthService } from '@library/app/auth/services';
 
 @Component({
   selector: 'lbr-books',
@@ -13,10 +14,17 @@ import { ModalCreateBookComponent } from '../../components/modals';
 })
 export class BooksComponent implements OnInit, OnDestroy {
   books$: Observable<Book[]>;
-  constructor(private bookService: BookService, private modalController: ModalController) {}
+  role$: Observable<UserRoles>;
+  userRoles = UserRoles;
+  constructor(
+    private bookService: BookService,
+    private modalController: ModalController,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
     this.books$ = this.bookService.books;
+    this.role$ = this.authService.role;
     this.initBooks();
   }
 
